@@ -40,7 +40,7 @@ TOPIC_ANALOG_OUT_COMMAND = f"analogoutcommand{DEVICE_ID}"
 TOPIC_ANALOG_OUT_STATUS  = f"analogoutstatus{DEVICE_ID}"
 TOPIC_OTA_COMMAND        = f"aotacommand{DEVICE_ID}"
 TOPIC_OTA_STATUS         = f"otastatus{DEVICE_ID}"
-
+TOPIC_NTC=               = f"ntc{DEVICE_ID}"
 
 # Yeniden bağlanma ayarları
 WIFI_RETRY_DELAY = 2
@@ -522,7 +522,7 @@ def main():
 
                     publish_digital_inputs()
                     temp = read_temperature()
-                    mqtt_client.publish("anka/ntc1", str(temp), retain=True)
+                    mqtt_client.publish(TOPIC_NTC, str(temp), retain=True)
                     print(f"Gönderilen sıcaklık: {temp} °C")
                     print("Relay commmand:",TOPIC_RELAY_COMMAND)
                     publish_analog_input()
