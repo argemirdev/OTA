@@ -40,7 +40,7 @@ TOPIC_ANALOG_OUT_COMMAND = f"analogoutcommand{DEVICE_ID}"
 TOPIC_ANALOG_OUT_STATUS  = f"analogoutstatus{DEVICE_ID}"
 TOPIC_OTA_COMMAND        = f"otacommand{DEVICE_ID}"
 TOPIC_OTA_STATUS         = f"otastatus{DEVICE_ID}"
-TOPIC_NTC=               = f"ntc{DEVICE_ID}"
+TOPIC_NTC                = f"ntc{DEVICE_ID}"
 
 # Yeniden bağlanma ayarları
 WIFI_RETRY_DELAY = 2
