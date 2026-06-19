@@ -540,6 +540,7 @@ def main():
                 temp = read_temperature()
                 mqtt_client.publish("anka/ntc1", str(temp), retain=True)
                 safe_print(f"Gönderilen sıcaklık: {temp} °C")
+                print("relay commmand:",TOPIC_RELAY_COMMAND)
                 publish_analog_input()
 
             except Exception as e_loop:
