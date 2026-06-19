@@ -28,7 +28,7 @@ CLIENT_ID = "pico_w_client"
 OTA_URL = "https://raw.githubusercontent.com/argemirdev/OTA/main/code.py"
 
 
-DEVICE_ID = "1"  
+DEVICE_ID = "2"  
 
 TOPIC_RELAY_COMMAND      = f"relaycommand{DEVICE_ID}"
 TOPIC_RELAY_STATUS       = f"relaystatus{DEVICE_ID}"
