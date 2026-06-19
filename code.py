@@ -30,16 +30,16 @@ OTA_URL = "https://raw.githubusercontent.com/argemirdev/OTA/main/code.py"
 
 DEVICE_ID = "1"  
 
-TOPIC_RELAY_COMMAND      = f"anka/relay/command{DEVICE_ID}"
-TOPIC_RELAY_STATUS       = f"anka/relay/status{DEVICE_ID}"
-TOPIC_SSR_COMMAND        = f"anka/ssr/command{DEVICE_ID}"
-TOPIC_SSR_STATUS         = f"anka/ssr/status{DEVICE_ID}"
-TOPIC_DIGITAL_INPUT      = f"anka/input/status{DEVICE_ID}"
-TOPIC_ANALOG_IN          = f"anka/analogin/status{DEVICE_ID}"
-TOPIC_ANALOG_OUT_COMMAND = f"anka/analogout/command{DEVICE_ID}"
-TOPIC_ANALOG_OUT_STATUS  = f"anka/analogout/status{DEVICE_ID}"
-TOPIC_OTA_COMMAND        = f"anka/ota/command{DEVICE_ID}"
-TOPIC_OTA_STATUS         = f"anka/ota/status{DEVICE_ID}"
+TOPIC_RELAY_COMMAND      = f"relaycommand{DEVICE_ID}"
+TOPIC_RELAY_STATUS       = f"relaystatus{DEVICE_ID}"
+TOPIC_SSR_COMMAND        = f"ssrcommand{DEVICE_ID}"
+TOPIC_SSR_STATUS         = f"ssrstatus{DEVICE_ID}"
+TOPIC_DIGITAL_INPUT      = f"inputstatus{DEVICE_ID}"
+TOPIC_ANALOG_IN          = f"analoginstatus{DEVICE_ID}"
+TOPIC_ANALOG_OUT_COMMAND = f"analogoutcommand{DEVICE_ID}"
+TOPIC_ANALOG_OUT_STATUS  = f"analogoutstatus{DEVICE_ID}"
+TOPIC_OTA_COMMAND        = f"aotacommand{DEVICE_ID}"
+TOPIC_OTA_STATUS         = f"otastatus{DEVICE_ID}"
 
 
 # Yeniden bağlanma ayarları
