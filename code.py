@@ -508,40 +508,25 @@ def main():
     try_connect_mqtt_with_backoff()
     safe_print("Ana döngü başlıyor.")
     mqtt_backoff = MQTT_BASE_BACKOFF
+    last_energy_t=0
 
     while True:
-        try:
-            if not is_network_ok():
-                safe_print("Wi-Fi bağlantısı görünmüyor. Yeniden bağlanılıyor...")
-                try:
-                    if mqtt_client:
-                        mqtt_client.disconnect()
-                except Exception:
-                    pass
-                mqtt_client = None
-
-                while not wifi_connect():
-                    safe_print(f"Wi-Fi bağlanamadı, {WIFI_RETRY_DELAY} sn sonra tekrar...")
-                    time.sleep(WIFI_RETRY_DELAY)
-
-                try_connect_mqtt_with_backoff()
-                mqtt_backoff = MQTT_BASE_BACKOFF
-                continue
-
-            if mqtt_client is None:
-                safe_print("MQTT client yok, yeniden bağlanılıyor...")
-                try_connect_mqtt_with_backoff()
+        
+           
 
             try:
                 mqtt_client.loop()
                 mqtt_backoff = MQTT_BASE_BACKOFF
+                now = time.monotonic()
+                if now - last_energy_t >= 1:
 
-                publish_digital_inputs()
-                temp = read_temperature()
-                mqtt_client.publish("anka/ntc1", str(temp), retain=True)
-                safe_print(f"Gönderilen sıcaklık: {temp} °C")
-                print("relay commmand:",TOPIC_RELAY_COMMAND)
-                publish_analog_input()
+                    publish_digital_inputs()
+                    temp = read_temperature()
+                    mqtt_client.publish("anka/ntc1", str(temp), retain=True)
+                    print(f"Gönderilen sıcaklık: {temp} °C")
+                    print("Relay commmand:",TOPIC_RELAY_COMMAND)
+                    publish_analog_input()
+                    last_energy_t = now
 
             except Exception as e_loop:
                 safe_print("MQTT loop hatası:", e_loop)
@@ -550,13 +535,13 @@ def main():
                 except Exception:
                     pass
                 mqtt_client = None
-                safe_print(f"MQTT yeniden bağlanacak {mqtt_backoff} sn...")
-                time.sleep(mqtt_backoff)
-                mqtt_backoff = min(mqtt_backoff * 2, MQTT_MAX_BACKOFF)
+                if not is_network_ok():
+                  while not wifi_connect():
+                    for _ in range(15):  
+                        time.sleep(1)
+                try_connect_mqtt_with_backoff()
 
-        except Exception as e_global:
-            safe_print("Ana döngü beklenmedik hata:", e_global)
-            time.sleep(2)
+       
 
 
 if __name__ == "__main__":
