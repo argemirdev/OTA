@@ -538,7 +538,7 @@ def main():
 
                 publish_digital_inputs()
                 temp = read_temperature()
-                mqtt_client.publish("anka/ntc", str(temp), retain=True)
+                mqtt_client.publish("anka/ntc1", str(temp), retain=True)
                 safe_print(f"Gönderilen sıcaklık: {temp} °C")
                 publish_analog_input()
 
