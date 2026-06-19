@@ -523,7 +523,7 @@ def main():
                     publish_digital_inputs()
                     temp = read_temperature()
                     mqtt_client.publish(TOPIC_NTC, str(temp), retain=True)
-                    print(f"Gönderilen sıcaklık: {temp} °C")
+                    print(f"TEMPERATURE: {temp} °C")
                     print("Relay commmand:",TOPIC_RELAY_COMMAND)
                     publish_analog_input()
                     last_energy_t = now
