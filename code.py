@@ -25,8 +25,8 @@ MQTT_PORT = 8883
 CLIENT_ID = "pico_w_client"
 
 
-OTA_URL = "https://raw.githubusercontent.com/argemirdev/OTA/main/code.py"
-
+OTA_URL = "https://raw.githubusercontent.com/argemirdev/OTATOKEN/main/code.py"
+GITHUB_TOKEN     = "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"
 
 DEVICE_ID = "1"  
 
@@ -212,7 +212,7 @@ def ota_update(url):
         safe_print("Kod indiriliyor...")
         mqtt_client.publish(TOPIC_OTA_STATUS, "OTA:INDIRILIYOR", retain=False)
 
-        response = r.get(url, timeout=30)
+        response = r.get(url,headers={"Authorization": f"token {GITHUB_TOKEN}"}, timeout=30)
 
         if response.status_code != 200:
             mqtt_client.publish(TOPIC_OTA_STATUS, f"OTA:HATA:HTTP{response.status_code}", retain=False)
