@@ -525,7 +525,7 @@ def main():
                     mqtt_client.publish(TOPIC_NTC, str(temp), retain=True)
                     print(f"TEMPERATURE: {temp} °C")
                     print("Relay commmand:",TOPIC_RELAY_COMMAND)
-                    print("Güncelleme Deneme1")
+                    print("OTA 22 HAZİRAN")
                     publish_analog_input()
                     last_energy_t = now
 
