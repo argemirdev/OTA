@@ -25,7 +25,7 @@ MQTT_PORT = 8883
 CLIENT_ID = "pico_w_client"
 
 
-OTA_URL = "https://raw.githubusercontent.com/argemirdev/OTATOKEN/main/code.py"
+OTA_URL = "https://raw.githubusercontent.com/argemirdev/OTA/main/code.py"
 GITHUB_TOKEN ="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"
 
 DEVICE_ID = "1"  
