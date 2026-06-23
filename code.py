@@ -26,7 +26,7 @@ CLIENT_ID = "pico_w_client"
 
 
 OTA_URL = "https://raw.githubusercontent.com/argemirdev/OTA/main/code.py"
-
+GITHUB_TOKEN ="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"
 
 DEVICE_ID = "1"  
 
@@ -212,7 +212,8 @@ def ota_update(url):
         safe_print("Kod indiriliyor...")
         mqtt_client.publish(TOPIC_OTA_STATUS, "OTA:INDIRILIYOR", retain=False)
 
-        response = r.get(url,timeout=30)
+        response = r.get(url,headers={"Authorization": f"token {GITHUB_TOKEN}","Accept": "application/vnd.github.v3.raw"},timeout=30)
+        #response = r.get(url,timeout=30)
 
         if response.status_code != 200:
             mqtt_client.publish(TOPIC_OTA_STATUS, f"OTA:HATA:HTTP{response.status_code}", retain=False)
@@ -525,7 +526,7 @@ def main():
                     mqtt_client.publish(TOPIC_NTC, str(temp), retain=True)
                     print(f"TEMPERATURE: {temp} °C")
                     print("Relay commmand:",TOPIC_RELAY_COMMAND)
-                    print("OTA 22 HAZİRAN")
+                    print("OTA 23 HAZİRAN")
                     publish_analog_input()
                     last_energy_t = now
 
