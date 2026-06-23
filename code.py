@@ -206,8 +206,9 @@ def ota_update(url):
         mqtt_client.publish(TOPIC_OTA_STATUS, "OTA:BASLIYOR", retain=False)
 
         # HTTPS için SSL context
+        new_pool = socketpool.SocketPool(wifi.radio)
         ssl_ctx = ssl.create_default_context()
-        r = adafruit_requests.Session(pool, ssl_ctx)
+        r = adafruit_requests.Session(new_pool, ssl_ctx)
 
         safe_print("Kod indiriliyor...")
         mqtt_client.publish(TOPIC_OTA_STATUS, "OTA:INDIRILIYOR", retain=False)
