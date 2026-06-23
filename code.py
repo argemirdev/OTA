@@ -206,15 +206,15 @@ def ota_update(url):
         mqtt_client.publish(TOPIC_OTA_STATUS, "OTA:BASLIYOR", retain=False)
 
         # HTTPS için SSL context
-        new_pool = socketpool.SocketPool(wifi.radio)
+        #new_pool = socketpool.SocketPool(wifi.radio)
         ssl_ctx = ssl.create_default_context()
-        r = adafruit_requests.Session(new_pool, ssl_ctx)
+        r = adafruit_requests.Session(pool, ssl_ctx)
 
         safe_print("Kod indiriliyor...")
         mqtt_client.publish(TOPIC_OTA_STATUS, "OTA:INDIRILIYOR", retain=False)
 
-        response = r.get(url,headers={"Authorization": f"token {GITHUB_TOKEN}","Accept": "application/vnd.github.v3.raw"},timeout=30)
-        #response = r.get(url,timeout=30)
+        #response = r.get(url,headers={"Authorization": f"token {GITHUB_TOKEN}","Accept": "application/vnd.github.v3.raw"},timeout=30)
+        response = r.get(url,timeout=30)
 
         if response.status_code != 200:
             mqtt_client.publish(TOPIC_OTA_STATUS, f"OTA:HATA:HTTP{response.status_code}", retain=False)
